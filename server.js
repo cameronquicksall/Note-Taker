@@ -1,4 +1,4 @@
-// Adds required dependencies
+// Required dependencies
 const express = require("express");
 const path = require("path");
 
