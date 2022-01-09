@@ -7,6 +7,11 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Sets up data parsing and route middleware
+app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 // Adds listener
 app.listen(PORT, function() {
     console.log(`App listening on PORT ${PORT}`);
@@ -30,3 +35,16 @@ app.get("/api/notes/:id", function(req, res) {
 app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
+
+// Assign id to note
+app.post("/api/notes", (req, res) => {
+    let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+    let newNote = req.body;
+    let noteId = (savedNotes.length).toString();
+    newNote.id = noteId;
+    savedNotes.push(newNote);
+
+    fs.writeFileSync("db/db.json", JSON.stringify(savedNotes));
+    console.log(`Note saved. ID ${noteId}. Content:`, newNote);
+    res.json(savedNotes);
+})
