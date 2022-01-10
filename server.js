@@ -12,11 +12,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-// Adds listener
-app.listen(PORT, function() {
-    console.log(`App listening on PORT ${PORT}`);
-});
-
 // Route for notes
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
@@ -59,4 +54,9 @@ app.delete("/api/notes/:id", (req, res) => {
     })
     fs.writeFileSync("db/db.json", JSON.stringify(savedNotes));
     res.json(savedNotes);
+});
+
+// Adds listener
+app.listen(PORT, function() {
+    console.log(`App listening on PORT ${PORT}`);
 });
