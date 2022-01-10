@@ -24,8 +24,9 @@ This is a simple note taking application that can be used to keep track of multi
 
 ## Usage
     To use or test the application, clone the repository and install the dependencies.
-<img width="1440" alt="Screen Shot 2022-01-09 at 6 18 03 PM" src="https://user-images.githubusercontent.com/91788324/148707357-b39d1ee0-3c72-4cfd-a2b9-70736e9649b8<img width="1440" alt="Screen Shot 2022-01-09 at 6 19 42 PM" src="https://user-images.githubusercontent.com/91788324/148707392-8898f2b9-2238-4cbe-8f41-072e7debfeae.png">
-.png">
+<img width="1440" alt="Screen Shot 2022-01-09 at 6 18 03 PM" src="https://user-images.githubusercontent.com/91788324/148707430-8eb33962-98fc-478b-a67e-cf8f5679586d.png">
+
+<img width="1440" alt="Screen Shot 2022-01-09 at 6 19 42 PM" src="https://user-images.githubusercontent.com/91788324/148707453-887c1c3d-51a4-47ae-9928-edf07cd595f7.png">
 
 ## Tests
     
