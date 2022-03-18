@@ -12,10 +12,10 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-// Route for notes
-app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "public/notes.html"));
-});
+// // Route for notes
+// app.get("/notes", function(req, res) {
+//     res.sendFile(path.join(__dirname, "public/notes.html"));
+// });
 
 app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "db/db.json"));
@@ -26,10 +26,10 @@ app.get("/api/notes/:id", function(req, res) {
     res.json(savedNotes[Number(req.params.id)]);
 })
 
-// Route for index file
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "public/index.html"));
-});
+// // Route for index file
+// app.get("*", function(req, res) {
+//     res.sendFile(path.join(__dirname, "public/index.html"));
+// });
 
 // Assign id to note
 app.post("/api/notes", (req, res) => {
