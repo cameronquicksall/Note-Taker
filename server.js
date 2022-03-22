@@ -1,62 +1,19 @@
-// Required dependencies
-const express = require("express");
-const path = require("path");
-const fs = require("fs");
+const express = require('express');
 
-// Sets port 
+const PORT = process.env.PORT || 3005;
 const app = express();
-const PORT = process.env.PORT || 3001;
 
-// Sets up data parsing and route middleware
-app.use(express.static(path.join(__dirname, "/public")));
-app.use(express.urlencoded({extended: true}));
+const htmlRoutes = require('./routes/htmlRoutes');
+const apiRoutes = require('./routes/apiRoutes');
+
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
-// // Route for notes
-// app.get("/notes", function(req, res) {
-//     res.sendFile(path.join(__dirname, "public/notes.html"));
-// });
+app.use('/', htmlRoutes);
+app.use('/api', apiRoutes);
 
-app.get("/api/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "db/db.json"));
-});
-
-app.get("/api/notes/:id", function(req, res) {
-    let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-    res.json(savedNotes[Number(req.params.id)]);
-})
-
-// // Route for index file
-// app.get("*", function(req, res) {
-//     res.sendFile(path.join(__dirname, "public/index.html"));
-// });
-
-// Assign id to note
-app.post("/api/notes", (req, res) => {
-    let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-    let newNote = req.body;
-    let noteId = (savedNotes.length).toString();
-    newNote.id = noteId;
-    savedNotes.push(newNote);
-
-    fs.writeFileSync("db/db.json", JSON.stringify(savedNotes));
-    console.log(`Note saved. ID ${noteId}. Content:`, newNote);
-    res.json(savedNotes);
-})
-
-//Delete method
-app.delete("/api/notes/:id", (req, res) => {
-    let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-    let noteId = req.params.id;
-    console.log(`Note ${noteId} deleted.`);
-    savedNotes = savedNotes.filter(currentNote => {
-        return currentNote.id != noteId;
-    })
-    fs.writeFileSync("db/db.json", JSON.stringify(savedNotes));
-    res.json(savedNotes);
-});
-
-// Adds listener
-app.listen(PORT, function() {
-    console.log(`App listening on PORT ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`API server now running on ${PORT}`);
 });
