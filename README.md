@@ -5,7 +5,7 @@
     
 # Description
 This is a simple note taking application that can be used to keep track of multiple notes or tasks with the ability to remove unwanted or completed tasks/notes.
-* Link to deployed application :
+* Link to deployed application : https://note-taker-xp.herokuapp.com/
 ### Table of Contents
 * [Description](#description)
 * [Installation](#installation)
